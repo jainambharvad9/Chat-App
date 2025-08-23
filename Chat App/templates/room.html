@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{room}} - Talk Chat</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: sans-serif;
+        background-color: #e5e7eb;
+      }
+      .chat-container {
+        max-width: 800px;
+        height: calc(
+          100vh - 120px
+        ); /* Adjust height to fit header and footer */
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+      }
+      .message-bubble {
+        max-width: 70%;
+        margin-bottom: 0.5rem;
+        padding: 0.75rem 1rem;
+        border-radius: 1.5rem;
+        word-wrap: break-word;
+      }
+      .message-bubble.sent {
+        background-color: #3b82f6;
+        color: white;
+        align-self: flex-end;
+        border-bottom-right-radius: 0.5rem;
+      }
+      .message-bubble.received {
+        background-color: #ffffff;
+        color: #374151;
+        align-self: flex-start;
+        border-bottom-left-radius: 0.5rem;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 flex flex-col h-screen">
+    <header class="bg-white shadow-sm p-4 text-center border-b border-gray-200">
+      <h2 class="text-xl font-bold text-gray-800">{{room}} - Talk Chat</h2>
+    </header>
+
+    <div id="display" class="chat-container mx-auto w-full"></div>
+
+    <div
+      class="fixed bottom-0 w-full bg-white p-4 shadow-top border-t border-gray-200"
+    >
+      <div class="container mx-auto">
+        <form id="post-form" class="flex items-center space-x-2">
+          {% csrf_token %}
+          <input
+            type="hidden"
+            name="username"
+            id="username"
+            value="{{username}}"
+          />
+          <input
+            type="hidden"
+            name="room_id"
+            id="room_id"
+            value="{{room_details.id}}"
+          />
+          <input
+            type="text"
+            name="message"
+            id="message"
+            placeholder="Type your message..."
+            required
+            class="flex-1 px-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:border-blue-500 transition text-gray-700"
+          />
+          <button
+            type="submit"
+            class="bg-blue-500 text-white p-3 rounded-full hover:bg-blue-600 transition-colors duration-300"
+          >
+            <i class="ri-send-plane-line text-xl"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        // Function to fetch and display messages
+        function getMessages() {
+          $.ajax({
+            type: "GET",
+            url: `/getMessages/{{room}}/`,
+            success: function (response) {
+              $("#display").empty();
+              for (var key in response.messages) {
+                var message = response.messages[key];
+                var temp;
+                // Check if the message is from the current user
+                if (message.user === "{{username}}") {
+                  temp = `<div class='message-bubble sent'>
+                                            <p>${message.value}</p>
+                                            <span class='text-xs font-light opacity-80 mt-1 block text-right'>${message.date}</span>
+                                        </div>`;
+                } else {
+                  temp = `<div class='message-bubble received'>
+                                            <b class="text-blue-500">${message.user}</b>
+                                            <p>${message.value}</p>
+                                            <span class='text-xs font-light text-gray-500 mt-1 block text-right'>${message.date}</span>
+                                        </div>`;
+                }
+                $("#display").append(temp);
+              }
+              // Scroll to the bottom of the chat
+              var chatDisplay = document.getElementById("display");
+              chatDisplay.scrollTop = chatDisplay.scrollHeight;
+            },
+            error: function (response) {
+              console.log("An error occurred:", response);
+            },
+          });
+        }
+
+        // Fetch messages every 1 second
+        setInterval(getMessages, 1000);
+
+        // Handle form submission for sending messages
+        $(document).on("submit", "#post-form", function (e) {
+          e.preventDefault();
+          $.ajax({
+            type: "POST",
+            url: "/send",
+            data: {
+              username: $("#username").val(),
+              room_id: $("#room_id").val(),
+              message: $("#message").val(),
+              csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val(),
+            },
+            success: function (data) {
+              // Clear the input field after sending
+              document.getElementById("message").value = "";
+            },
+            error: function (data) {
+              console.log("Error sending message:", data);
+            },
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
+  
