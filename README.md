@@ -31,25 +31,41 @@ Supports **private chatting with friends** and **group chats**.
 
 chat-app/
 │
+<br>
 ├── chat/ # Chat app (Django app)
+<br>
 │ ├── migrations/
+<br>
 │ ├── templates/ # HTML templates
+<br>
 │ │ ├── home.html
+<br>
 │ │ └── room.html
+<br>
 │ ├── views.py
+<br>
 │ ├── models.py
+<br>
 │ ├── urls.py
+<br>
 │ └── consumers.py # WebSocket logic
+<br>
 │
+<br>
 ├── chatapp/ # Project root (settings, asgi, urls)
+<br>
 │ ├── settings.py
+<br>
 │ ├── urls.py
+<br>
 │ └── asgi.py # WebSocket entry point
+<br>
 │
+<br>
 ├── manage.py
+<br>
 └── README.md
-
-
+<br>
 
 ---
 
@@ -57,7 +73,7 @@ chat-app/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/chat-app.git
+   git clone https://github.com/jainambharvad9/Chat-App.git
    cd chat-app
 Create virtual environment & activate
 
@@ -68,7 +84,7 @@ venv\Scripts\activate      # On Windows
 Install dependencies
 
 
-pip install -r requirements.txt
+
 Apply migrations
 
 
@@ -82,8 +98,10 @@ Open in browser → http://127.0.0.1:8000/
 
 🖼️ Screenshots
 🔹 Home Page (Create/Join Room)
+![Demo Screenshot](https://github.com/jainambharvad9/Chat-App/blob/main/Chat%20App/Screenshot%202025-08-23%20234908.png)
 
 🔹 Chat Room
+![Demo Screenshot](https://github.com/jainambharvad9/Chat-App/blob/main/Chat%20App/Screenshot%202025-08-23%20235000.png)
 
 🔮 Future Improvements
 ✅ Add user authentication system
