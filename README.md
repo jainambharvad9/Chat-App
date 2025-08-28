@@ -104,6 +104,7 @@ Open in browser → http://127.0.0.1:8000/
 ![Demo Screenshot](https://github.com/jainambharvad9/Chat-App/blob/main/Chat%20App/Screenshot%202025-08-23%20235000.png)
 
 🔮 Future Improvements
+
 ✅ Add user authentication system
 
 ✅ Add online/offline user status
