@@ -126,7 +126,7 @@ Open a Pull Request
 This project is licensed under the MIT License – feel free to use and modify.
 
 👨‍💻 Author Jainam Saraiya
-📧 jainamsaraiya9@example.com
-🌐 GitHub https://github.com/jainambharvad9
+
+📧 jainamsaraiya9@gmail.com
 
 ---
