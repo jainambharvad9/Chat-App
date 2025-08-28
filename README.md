@@ -95,15 +95,19 @@ Run server
 python manage.py runserver
 Open in browser → http://127.0.0.1:8000/
 
+---
 
-🖼️ Screenshots
+## 🖼️ Screenshots
+
 🔹 Home Page (Create/Join Room)
 ![Demo Screenshot](https://github.com/jainambharvad9/Chat-App/blob/main/Chat%20App/Screenshot%202025-08-23%20234908.png)
 
 🔹 Chat Room
 ![Demo Screenshot](https://github.com/jainambharvad9/Chat-App/blob/main/Chat%20App/Screenshot%202025-08-23%20235000.png)
 
-🔮 Future Improvements
+---
+
+## 🔮 Future Improvements
 
 ✅ Add user authentication system
 
@@ -111,7 +115,9 @@ Open in browser → http://127.0.0.1:8000/
 
 ✅ Support file/image sharing
 
-🤝 Contributing
+---
+
+## 🤝 Contributing
 Fork the project
 
 Create a new feature branch (git checkout -b feature-name)
@@ -122,8 +128,12 @@ Push to your branch (git push origin feature-name)
 
 Open a Pull Request
 
-📜 License
+---
+
+## 📜 License
 This project is licensed under the MIT License – feel free to use and modify.
+
+---
 
 👨‍💻 Author Jainam Saraiya
 
