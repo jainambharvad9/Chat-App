@@ -106,8 +106,6 @@ Open in browser → http://127.0.0.1:8000/
 🔮 Future Improvements
 ✅ Add user authentication system
 
-✅ Store chat history in database
-
 ✅ Add online/offline user status
 
 ✅ Support file/image sharing
